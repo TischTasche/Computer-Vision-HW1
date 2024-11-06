@@ -7,6 +7,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
+from Image_Loader import LoadImage as LoadImage
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -34,7 +36,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.load_image, 0, 0)
 
         ## 1. Calibration
-        self.calibration = CalibrationPlayholder()
+        self.calibration = "CalibrationPlayholder()"
         self.calibration.setFont(QFont())
         layout.addWidget(self.calibration, 0, 0)
 
