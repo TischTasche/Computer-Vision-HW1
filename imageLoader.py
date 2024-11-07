@@ -9,30 +9,42 @@ from PyQt5.QtWidgets import *
 
 class ImageLoading(QWidget):
     def __init__(self):
-        super().__init__("Load Image")
+        super().__init__()
 
         self.layout = QVBoxLayout()
 
+        #### Box Layout 
+        self.loadImageBox = QGroupBox('Load Image')
+        self.loadImageLayout = QVBoxLayout()
+        
+
+        #### Load Folder Button
         self.loadFolderButton = QPushButton("Load Folder")
         self.loadFolderButton.clicked.connect(self.loadFolder)
-        self.layout.addWidget(self.loadFolderButton)
+        self.loadImageLayout.addWidget(self.loadFolderButton)
 
+        #### Load Image Left Button
         self.loadImageLButton = QPushButton("Load Image_L")
         self.loadImageLButton.clicked.connect(self.loadImageL)
-        self.layout.loadImageLButton(self.loadImageLButton)
+        self.loadImageLayout.addWidget(self.loadImageLButton)
         self.imageL = ""
 
+        #### Load Image Right Button
         self.loadImageRButton = QPushButton("Load Image_R")
         self.loadImageRButton.clicked.connect(self.loadImageR)
-        self.layout.loadImageRButton(self.loadImageRButton)
+        self.loadImageLayout.addWidget(self.loadImageRButton)
         self.imageR = ""
+
+        #### Finishing Layout
+        self.loadImageBox.setLayout(self.loadImageLayout)
+        self.layout.addWidget(self.loadImageBox)
 
         self.setLayout(self.layout)
 
         self.imageDict = {}
 
 
-#### Load Folder and images 
+    #### Load Folder and images 
     def loadFolder(self):
         folderPath = QFileDialog.getExistingDirectory(self, "Select a folder")
         if folderPath:

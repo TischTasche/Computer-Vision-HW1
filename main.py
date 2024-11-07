@@ -7,18 +7,22 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from imageLoader import loadFolder 
+from imageLoader import ImageLoading
+from calibration import Calibration
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        ## Layout
+        #### Layout
         self.setWindowTitle('cvdlhw1.ui - Sören Petersen')
         self.setGeometry(100, 100, 1600, 1000)
 
-        layout = QGridLayout()
+        centralWidget = QWidget()
+        self.setCentralWidget(centralWidget)
+
+        layout = QGridLayout(centralWidget)
         layout.setColumnStretch(0, 1)
         layout.setColumnStretch(1, 1)
         layout.setColumnStretch(2, 1)
@@ -30,27 +34,26 @@ class MainWindow(QMainWindow):
         widget.setLayout(layout)
         self.setCentralWidget(widget)
 
-        ## Load Image
-        self.load_image = loadImage()
-        self.load_image.setFont(QFont())
-        layout.addWidget(self.load_image, 0, 0)
+        #### Load Image
+        self.loadImage = ImageLoading()
+        layout.addWidget(self.loadImage, 0, 0)
 
-        ## 1. Calibration
-        self.calibration = "CalibrationPlayholder()"
+        #### 1. Calibration
+        self.calibration = Calibration()
         self.calibration.setFont(QFont())
-        layout.addWidget(self.calibration, 0, 0)
+        layout.addWidget(self.calibration, 0, 0) 
 
-        ## 2. Augmented Reality
+        #### 2. Augmented Reality
         """  self.AR = LoadImage()
         self.AR.setFont(QFont())
         layout.addWidget(self.AR, 0, 0)
 
-        ## 3. Stereo Disparity Map
+        #### 3. Stereo Disparity Map
         self.load_image_widget = LoadImage()
         self.load_image_widget.setFont(QFont())
         layout.addWidget(self.load_image_widget, 0, 0)
 
-        ## 4. SIFT
+        #### 4. SIFT
         self.load_image_widget = LoadImage()
         self.load_image_widget.setFont(QFont())
         layout.addWidget(self.load_image_widget, 0, 0) """
@@ -58,10 +61,10 @@ class MainWindow(QMainWindow):
 
 
 def main():
-    app = QApplication([])
-    MainWindow().show()
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
     sys.exit(app.exec_())
-    app.exec_()
 
 if __name__ == "__main__":
     main()
