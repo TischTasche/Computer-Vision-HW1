@@ -7,7 +7,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from Image_Loader import LoadImage as LoadImage
+from imageLoader import loadFolder 
 
 
 class MainWindow(QMainWindow):
@@ -31,7 +31,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(widget)
 
         ## Load Image
-        self.load_image = LoadImage()
+        self.load_image = loadImage()
         self.load_image.setFont(QFont())
         layout.addWidget(self.load_image, 0, 0)
 
